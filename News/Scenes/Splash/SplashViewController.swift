@@ -31,6 +31,7 @@ class SplashViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
+        navigateToTabbar()
     }
 }
 
@@ -61,6 +62,17 @@ class SplashViewController: UIViewController {
                 leading: view.leadingAnchor,
                 trailing: view.trailingAnchor
             )
+        }
+        
+        func navigateToTabbar() {
+            //fonksiyon çağrıldıktan 5 saniye sonra çalışacak
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else {
+                    return
+                }
+                let tabBarController = TabBarController()
+                sceneDelegate.window?.rootViewController = tabBarController
+            }
         }
     
 }
