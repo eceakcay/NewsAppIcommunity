@@ -27,11 +27,29 @@ class SplashViewController: UIViewController {
         return label
     }()
     
+    private let newsService = NewsService()
+    private var fetchedNews: [Article] = []
+    
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
         navigateToTabbar()
+        
+        newsService.fetchTopNews(
+            country: "us",
+            page: 1,
+            pageSize: 5) { result in
+                DispatchQueue.main.async {
+                    switch result {
+                    case .success(let succes):
+                        print(result)
+                    case .failure(let failure):
+                        print("Failed to fetch news")
+                    }
+                }
+            
+        }
     }
 }
 
