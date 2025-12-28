@@ -50,7 +50,7 @@ extension NewsService: NewsServiceProtocol {
             url: url,
             method: .GET,
             completion: completion
-        ) 
+        )
     }
     
 }
